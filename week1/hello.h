@@ -1,6 +1,7 @@
 #ifndef HELLO_H
 #define HELLO_H
+#define PI 3.14159
 
-void print_hello();
+void printidkdkdk_hello();
 
 #endif
