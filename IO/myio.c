@@ -1,10 +1,13 @@
 // myio.c
 #include <stdio.h>
 #include "myio.h"
+#define DEBUG 1
 
-// 写入内容到文件
 void write_to_file(const char *filename, const char *content)
 {
+#ifdef DEBUG
+    printf("Debug mode is on\n");
+#endif
     FILE *file = fopen(filename, "a"); // 打开文件写入模式
     if (file == NULL)
     {
