@@ -1,8 +1,9 @@
 #include <stdlib.h>    // for exit
 #include <sys/types.h> // for pid_t (optional, used in some systems for fork return type)
 #include <unistd.h>    // for fork
+#include <stdio.h>     // for printf// for fork
 
-int N_CHILDREN(n)
+int N_CHILDREN(int n)
 {
     for (int i = 0; i < n; i++)
     {

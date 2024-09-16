@@ -3,7 +3,7 @@
 #include <unistd.h>    // for fork
 #include <stdio.h>     // for printf
 
-int N_CHILDREN(n)
+int N_CHILDREN(int n)
 {
     if (n == 0)
     {
