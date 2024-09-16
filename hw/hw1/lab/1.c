@@ -12,7 +12,7 @@ int N_CHILDREN(int n)
             exit(0);
         }
     }
-    printf("this is N time");
+    printf("this is testing");
     return 0;
 }
 int main(int argc, char *argv[])

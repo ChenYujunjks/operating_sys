@@ -9,10 +9,10 @@ int N_CHILDREN(int n)
     {
         if (fork() == 0)
         {
-            exit(0);
+            exit(i);
         }
+        wait(NULL);
     }
-    wait(NULL);
     printf("this is testing");
     return 0;
 }
