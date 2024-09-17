@@ -22,6 +22,7 @@ int N_CHILDREN(int n)
         }
     }
 }
+
 int main(int argc, char *argv[])
 {
     N_CHILDREN(3);

@@ -23,7 +23,7 @@ int N_CHILDREN(int n)
     }
 
     int status;
-    waitpid(last_child_pid, &status, 0); // 只等待最后一个子进程结束
+    waitpid(last_child_pid, &status, 0); 
     printf("Last child with PID %d terminated with status %d\n", last_child_pid, WEXITSTATUS(status));
 
     return 0;
