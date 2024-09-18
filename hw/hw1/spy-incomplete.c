@@ -49,18 +49,15 @@ int main(int argc, char **argv)
 					-> PARENT WAITS UNTIL COMPLETION AND RELEASES MEMORY */
 			if (fork() == 0)
 			{
-				if (command_size == 2)
-				{
+				if (command_size == 2){
 					execlp(command[0], command[0], command[1], NULL);
 				}
-				else
-				{
+				else{
 					execvp(command[0], &command[0]);
 				}
 				perror("exec");
 			}
-			else
-			{
+			else{
 				wait(NULL);
 				free(command);
 			}
