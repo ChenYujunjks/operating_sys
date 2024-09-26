@@ -5,6 +5,7 @@
 // 定义中断处理程序
 void handle_interrupt(int sig) {
     printf("收到信号 %d: 中断已捕捉到!\n", sig);
+    exit(0);  
 }
 
 int main() {
