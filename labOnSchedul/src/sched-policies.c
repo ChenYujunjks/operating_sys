@@ -1,4 +1,5 @@
 #include <os-scheduling.h>
+#include <limits.h>
 
 
 int admitNewTasks(task tasks[], int nbOfTasks, sched_data* schedData, int currentTime) {
@@ -67,6 +68,29 @@ int FCFS(task tasks[], int nbOfTasks, sched_data* schedData, int currentTime) {
 
 
 int SJF(task tasks[], int nbOfTasks, sched_data* schedData, int currentTime) {
+    int i, selectedTask = -1;
+    int shortestTime = INT_MAX;
+
+    admitNewTasks(tasks, nbOfTasks, schedData, currentTime);
+    printQueues(tasks, schedData);
+
+    // 找到最短作业（非抢占式）
+    for (i = 0; i < nbOfTasks; i++) {
+        if (tasks[i].state == READY && tasks[i].computationTime < shortestTime) {
+            shortestTime = tasks[i].computationTime;
+            selectedTask = i;
+        }
+    }
+
+    if (selectedTask != -1) {
+        tasks[selectedTask].executionTime++;
+        tasks[selectedTask].state = RUNNING;
+        if (tasks[selectedTask].executionTime == tasks[selectedTask].computationTime) {
+            tasks[selectedTask].state = TERMINATED;
+            tasks[selectedTask].completionDate = currentTime;
+        }
+        return selectedTask;
+    }
     //TODO (LAB Q3)
     return -1;
 }
@@ -74,6 +98,33 @@ int SJF(task tasks[], int nbOfTasks, sched_data* schedData, int currentTime) {
 
 int SRTF(task tasks[], int nbOfTasks, sched_data* schedData, int currentTime) {
     //TODO (LAB Q3)
+    int i, selectedTask = -1;
+    int shortestRemainingTime = INT_MAX;
+
+    admitNewTasks(tasks, nbOfTasks, schedData, currentTime);
+    printQueues(tasks, schedData);
+
+    // find shortest lasting task
+    for (i = 0; i < nbOfTasks; i++) {
+        if (tasks[i].state == READY || tasks[i].state == RUNNING) {
+            int remainingTime = tasks[i].computationTime - tasks[i].executionTime;
+            if (remainingTime < shortestRemainingTime) {
+                shortestRemainingTime = remainingTime;
+                selectedTask = i;
+            }
+        }
+    }
+
+    if (selectedTask != -1) {
+        tasks[selectedTask].executionTime++;
+        tasks[selectedTask].state = RUNNING;
+        if (tasks[selectedTask].executionTime == tasks[selectedTask].computationTime) {
+            tasks[selectedTask].state = TERMINATED;
+            tasks[selectedTask].completionDate = currentTime;
+        }
+        return selectedTask;
+    }
+
     return -1;
 }
 

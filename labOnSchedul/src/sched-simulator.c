@@ -66,6 +66,7 @@ void printQueues(task tasks[], sched_data *schedData)
         printf("\n");
     }
 }
+
 void printFinalStatistics(task tasks[], int nbOfTasks, int totalTime)
 {
     int i, turnaroundTime, waitingTime;
